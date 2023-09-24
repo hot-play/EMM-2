@@ -18,11 +18,13 @@ plot(ar_3,type = 'l')
  
 # Оценить параметр |𝜃| ≤ 1 по методу наименьших квадратов (МНК)
 mnk = function(n, ar) {
-   	sum = 0
+   	sum_1 = 0
+   	sum_2 = 0
    	for(i in 2 : n) {
-     	sum = sum + 2 * (ar[i-1] - ar[i])
+     	sum_1 = sum_1 + (ar[i-1] * ar[i-1])
+     	sum_2 = sum_2 + (ar[i-1] * ar[i])
    	}
-  	return (sum)
+  	return (sum_2/sum_1)
 }
 
 k = mnk(100, ar_1)
