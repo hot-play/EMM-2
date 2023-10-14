@@ -58,7 +58,7 @@ garch3 = function(a, n){
     h[4] = rnorm(1, 0, 1) * sqrt(s[4])
     
     for(i in 5:n) {
-        s[i] = a[1] + a[2] * h[i-1] ** 2 + a[3] * h[i-2] ** 2 + a[4] * h[i-3] ** 2
+        s[i] = a[1] + a[2] * h[i-1] ** 2 + a[3] * h[i-2] ** 2 + h[4] * h[i-3] ** 2
         h[i] = rnorm(1, 0, 1) * sqrt(s[i])
     }
     
@@ -85,7 +85,7 @@ prognoz = function(a, g) {
     for(i in 4:n) {
         s[i] = a[1] + a[2] * g[i-1] ** 2 + a[3] * g[i-2] ** 2 + g[4] * g[i-3] ** 2
     }
-    plot(g, type='l', col = "black")
+    plot(g*g, type='l', col = "black")
     lines(s, type='p', col = "red")
     return(s)
 }
@@ -103,11 +103,11 @@ garch_1_1 = function(a, n) {
     s = double(n)
 
     h[1] = 1
-    s[1] = a[1] + a[2] * h[1] ** 2
+    s[1] = a[1] + a[2] * h[1]
 
     for(i in 2:n) {
 
-    s[i] = a[1] + a[2] * h[i-1] ** 2 + a[3] * s[i-1] ** 2
+    s[i] = a[1] + a[2] * h[i-1] ** 2 + a[3] * h[i-1] ** 2
     h[i] = rnorm(1, 0, 1) * sqrt(s[i])
 
     }
