@@ -98,8 +98,8 @@ for(i in 2:length(P)) {
 plot(x, type='l')
 
 # Повторить шаги 2-4 для последовательности
-data_learn = P[1:4800]
-data_test = P[4801:5000]
+data_learn = x[1:4800]
+data_test = x[4801:5000]
 arima_2 = arima(data_learn, order = c(2, 0, 0), include.mean = F)
 teta = c(arima_2$coef[1], arima_2$coef[2])
 learn_2 = data_learn[1]
@@ -111,3 +111,4 @@ a = c(garch_2$coef[1], garch_2$coef[2], garch_2$coef[3], garch_2$coef[4])
 
 ar2_arch3_2 = ar2_arch3(teta, a, data_test, 200)
 prognoz_2 = prognoz(teta, a, data_test, 200)
+  
